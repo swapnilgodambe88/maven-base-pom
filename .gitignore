@@ -1,5 +1,27 @@
+#IntelliJ project files
+.idea
+*.iml
+*.ipr
+*.iws
+
 # Compiled class file
 *.class
+
+#Maven project files
+.classpath
+.project
+.settings
+
+bin
+/bin/
+target
+derby.log
+.profiler
+
+.clover
+.fbprefs
+*.sh
+*.orig
 
 # Log file
 *.log

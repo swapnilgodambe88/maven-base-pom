@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <body>
+        <menu ref="parent" />
+        <menu ref="modules" />
+        <menu name="Documents">
+            <item name="About" href="index.html" />
+        </menu>
+        <menu ref="reports" />
+    </body>
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.8</version>
+    </skin>
+</project>
