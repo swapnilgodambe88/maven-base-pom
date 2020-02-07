@@ -7,7 +7,10 @@
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>Maven base pom for java projects</description>
+
+    <url>https://github.com/swapnilgodambe88/maven-base-pom</url>
     <inceptionYear>2019</inceptionYear>
+
     <developers>
         <developer>
             <name>Swapnil Godambe</name>
@@ -20,14 +23,16 @@
             <timezone>America/Chicago</timezone>
         </developer>
     </developers>
+
     <scm>
         <connection>${scm.connection}</connection>
         <developerConnection>${scm.developerConnection}</developerConnection>
         <tag>HEAD</tag>
         <url>${scm.url}</url>
     </scm>
+
     <properties>
-        <!-- scm info-->
+        <!-- scm info -->
         <github.host>github.com</github.host>
         <github.url>https://${github.host}</github.url>
         <scm.connection>scm:git:git://${github.host}/${github.org}/${github.repo}.git</scm.connection>
@@ -43,18 +48,20 @@
         <sortpom-maven-plugin.version>2.10.0</sortpom-maven-plugin.version>
         <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
         <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
-        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
         <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+        <maven-surefire-report-plugin.version>3.0.0-M4</maven-surefire-report-plugin.version>
+        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
 
         <!-- Other versions -->
         <jdk.version>1.8</jdk.version>
-        <jdk.next.version>11</jdk.next.version>
+        <jdk.next.version>12</jdk.next.version>
         <maven.version>3.6.2</maven.version>
         <maven.next.version>4.0.0</maven.next.version>
         <github.org>swapnilgodambe88</github.org>
         <github.repo>${project.artifactId}</github.repo>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -71,11 +78,6 @@
                         <nrOfIndentSpace>4</nrOfIndentSpace>
                         <keepBlankLines>true</keepBlankLines>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven-checkstyle-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -102,6 +104,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jxr-plugin</artifactId>
+                    <version>${maven-jxr-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>${maven-project-info-reports-plugin.version}</version>
                 </plugin>
@@ -110,8 +117,14 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${maven-site-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${maven-surefire-report-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>com.coveo</groupId>
@@ -124,25 +137,6 @@
                         <goals>
                             <goal>check</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <logViolationsToConsole>true</logViolationsToConsole>
-                            <failOnViolation>true</failOnViolation>
-                            <violationSeverity>warning</violationSeverity>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -191,12 +185,16 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>${versions-maven-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
+
     <reporting>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -219,6 +217,10 @@
                 </reportSets>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <reportSets>
@@ -233,11 +235,21 @@
             </plugin>
         </plugins>
     </reporting>
+
     <profiles>
         <profile>
             <id>jdk8_target</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <jdk.target.version>1.8</jdk.target.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>jdk11_target</id>
+            <properties>
+                <jdk.target.version>11</jdk.target.version>
             </properties>
         </profile>
         <profile>
