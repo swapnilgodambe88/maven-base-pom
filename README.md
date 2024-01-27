@@ -11,8 +11,8 @@ practices for Maven plugins. This project has the following goals:
 ## Prerequisites
 
 The build environment must have the following prerequisite software installations:
-* [Maven 3.6.2+](https://maven.apache.org/docs/history.html)
-* Java 8 or Java 11+
+* [Maven 3.9.4+](https://maven.apache.org/docs/history.html)
+* Java 18 - Java 22
 
 ## How to use it
 

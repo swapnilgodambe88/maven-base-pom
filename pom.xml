@@ -55,9 +55,9 @@
         <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
 
         <!-- Other versions -->
-        <jdk.version>1.8</jdk.version>
-        <jdk.next.version>12</jdk.next.version>
-        <maven.version>3.6.2</maven.version>
+        <jdk.version>18</jdk.version>
+        <jdk.next.version>22</jdk.next.version>
+        <maven.version>3.9.4</maven.version>
         <maven.next.version>4.0.0</maven.next.version>
         <github.org>swapnilgodambe88</github.org>
         <github.repo>${project.artifactId}</github.repo>
@@ -232,6 +232,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+                <version>2.16.2</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -360,18 +361,18 @@
 
     <profiles>
         <profile>
-            <id>jdk8_target</id>
+            <id>jdk22_target</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <jdk.target.version>1.8</jdk.target.version>
+                <jdk.target.version>22</jdk.target.version>
             </properties>
         </profile>
         <profile>
-            <id>jdk11_target</id>
+            <id>jdk18_target</id>
             <properties>
-                <jdk.target.version>11</jdk.target.version>
+                <jdk.target.version>18</jdk.target.version>
             </properties>
         </profile>
         <profile>
